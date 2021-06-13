@@ -1,11 +1,7 @@
 <template>
   <div>
     <Navbar />
-
-    <div class="container column is-10">
-      <nuxt />
-    </div>
-
+    <nuxt />
     <Footer />
   </div>
 </template>

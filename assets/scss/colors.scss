@@ -1,0 +1,23 @@
+.theme-color {
+  color: #14805e !important;
+}
+
+.custom-btn {
+  border-color: #14805e;
+  background: #14805e;
+  color: #ffffff;
+
+  &:hover{
+    border-color: #14805e;
+    background: #ffffff;
+    color: #14805e;
+  }
+}
+
+.grey-bg-color--primary {
+  background-color: #e9ecef;
+}
+
+.with-underline {
+  border-bottom: 1px solid #14805e !important;
+}

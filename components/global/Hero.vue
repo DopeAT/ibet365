@@ -1,0 +1,48 @@
+<template>
+  <section :class="sectionClass">
+    <div class="container">
+      <div class="hero">
+        <div class="hero-body">
+          <p class="title">
+            {{ title }}
+          </p>
+          <p class="subtitle">
+            {{ subtitle }}
+          </p>
+
+          <div v-html="description"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script>
+export default {
+  name: 'Hero',
+  props: {
+    sectionClass: {
+      type: String,
+      required: false,
+      default: 'has-background-light'
+    },
+    title: {
+      type: String,
+      required: true
+    },
+    subtitle: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String,
+      required: false,
+      default: ''
+    }
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

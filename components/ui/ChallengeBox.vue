@@ -6,7 +6,7 @@
       </div>
 
       <div class="content">
-        {{ challenge.subtitle }}
+        {{ challenge.description }}
       </div>
 
       <div class="is-flex is-justify-content-space-between is-align-items-center">
@@ -15,13 +15,13 @@
         </div>
         <div>
           <nuxt-link class="has-text-info" to="/" title="View Bets">
-            1 / {{ challenge.total }}
+            {{ challenge.totalBets }} / {{ challenge.total }}
           </nuxt-link>
         </div>
         <b-button
           size="is-small"
           tag="router-link"
-          :to="challenge.slug"
+          :to="'/challenge-bet/' + challenge.slug"
           class="custom-btn"
         >
           View Bets

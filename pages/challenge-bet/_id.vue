@@ -1,26 +1,26 @@
 <template>
   <div>
     <hero
-      title="Hello hero title"
-      subtitle="Hello hero subtitle"
-      description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. A consectetur cum, dolor ea earum eveniet hic, mollitia nesciunt numquam praesentium quasi quia quisquam repudiandae sed similique sunt totam voluptas voluptates!"
+      :title="challenge.name"
+      :description="challenge.description"
+      :body="challenge.body"
       class="has-text-centered"
       section-class=""
     />
 
-    <section class="has-background-light">
+    <section class="has-background-light p-3">
       <div class="container is-fullheight">
         <div class="columns mt-3">
           <div class="column is-three-quarters py-3">
-            <p class="with-underline is-size-5 mb-3">
-              25 to 1000 Bet Challenge
+            <p class="with-underline is-size-5 mb-3 has-text-weight-bold">
+              {{ challenge.name }}
             </p>
 
-            <TableRow :headers="headers" />
+            <BetsTableList :headers="headers" />
           </div>
 
           <div class="column is-one-quarters">
-            asd
+            <BookieSideBox />
           </div>
         </div>
       </div>
@@ -29,21 +29,73 @@
 </template>
 
 <script>
-import TableRow from '~/components/ui/TableRow'
+import { mapGetters } from 'vuex'
+import BetsTableList from '~/components/ui/BetsTableList'
+import BookieSideBox from '~/components/ui/BookieSideBox'
 
 export default {
   name: 'Id',
-  components: { TableRow },
+  components: { BetsTableList, BookieSideBox },
   data () {
     return {
       headers: [
-        { label: 'Bet', size: 'is-1', isMobile: false },
-        { label: 'Game', size: 'is-4', isMobile: false },
-        { label: 'Tip', size: 'is-4', isMobile: false },
-        { label: 'Stake', size: 'is-1', isMobile: false },
-        { label: 'Return', size: 'is-1', isMobile: false },
-        { label: 'Result', size: 'is-1', isMobile: false }
+        {
+          label: 'Bet',
+          class: ['is-1-desktop'],
+          isMobile: false
+        },
+        {
+          label: 'Game',
+          class: [
+            'is-10-mobile',
+            'is-4-tablet',
+            'is-4-desktop'
+          ],
+          isMobile: true
+        },
+        {
+          label: 'Tip',
+          class: [
+            'is-4-mobile',
+            'is-4-tablet',
+            'is-4-desktop'
+          ],
+          isMobile: false
+        },
+        {
+          label: 'Stake',
+          class: ['is-1-desktop'],
+          isMobile: false
+        },
+        {
+          label: 'Return',
+          class: ['is-1-desktop'],
+          isMobile: false
+        },
+        {
+          label: 'Result',
+          class: ['is-1-desktop'],
+          isMobile: false
+        },
+        {
+          label: '',
+          class: ['is-hidden-laptop is-hidden-desktop is-2-mobile'],
+          isMobile: true
+        }
       ]
+    }
+  },
+  computed: {
+    ...mapGetters({
+      challenge: 'challenges/getChallenge'
+    })
+  },
+  mounted () {
+    this.initChallenge(this.$route.params.id)
+  },
+  methods: {
+    async initChallenge (slug) {
+      await this.$store.dispatch('challenges/show', slug)
     }
   }
 }

@@ -7,10 +7,10 @@
             {{ title }}
           </p>
           <p class="subtitle">
-            {{ subtitle }}
+            {{ description }}
           </p>
 
-          <div v-html="description"></div>
+          <div v-html="body"></div>
         </div>
       </div>
     </div>
@@ -28,13 +28,15 @@ export default {
     },
     title: {
       type: String,
-      required: true
-    },
-    subtitle: {
-      type: String,
-      required: true
+      required: false,
+      default: ''
     },
     description: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    body: {
       type: String,
       required: false,
       default: ''

@@ -1,54 +1,45 @@
 <template>
   <div class="challenge-bets p-3">
-    <div v-if="hasHeaders" class="columns challenge-header">
+    <div v-if="hasHeaders" class="columns challenge-header is-mobile">
       <div
         v-for="(header, index) in headers"
-        class="column has-text-weight-semibold"
-        :class="header.size"
         :key="index"
+        class="column has-text-weight-semibold"
+        :class="[
+          {'has-text-left-mobile': (index + 1) !== headers.length},
+          {'has-text-right-mobile': (index + 1) === headers.length},
+          {'is-hidden-mobile': !header.isMobile},
+          header.class.join(' ')
+        ]"
       >
         {{ header.label }}
       </div>
     </div>
 
-    <div class="columns challenge-bets-data">
-      <div class="column is-1">
-        1
-      </div>
-      <div class="column is-4">
-        AEK v OSFP - Tue 28 May 19:00
-      </div>
-      <div class="column is-4">
-        Home Win (1.97)
-      </div>
-      <div class="column is-1">
-        25
-      </div>
-      <div class="column is-1">
-        49.25
-      </div>
-      <div class="column is-1">
-        -
-      </div>
+    <div v-for="(bet, index) in challenge.bets" :key="index">
+      <TableRowExpandItem :bet="bet" :bet-num="index + 1" />
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import TableRowExpandItem from '~/components/ui/TableRowExpandItem'
+
 export default {
-  name: 'TableRow',
+  name: 'BetsTableList',
+  components: { TableRowExpandItem },
   props: {
     headers: {
       type: Array,
       required: false,
       default: null
-    },
-
-    bets: [
-      { id: '', number: '', game: '', tip: '', stake: '', result: '' }
-    ]
+    }
   },
   computed: {
+    ...mapGetters({
+      challenge: 'challenges/getChallenge'
+    }),
     hasHeaders () {
       return this.headers && this.headers.length
     }
@@ -60,7 +51,7 @@ export default {
 .challenge-bets {
   .challenge-header {
     background: #d6d6d6;
-    padding: 10px 0px;
+    padding: 10px 0;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     text-align: center;
@@ -68,9 +59,8 @@ export default {
 
   .challenge-bets-data {
     background: #fff;
-    padding: 15px 0px;
+    padding: 15px 0;
     text-align: center;
-    justify-content: center;
     align-items: center;
     display: flex;
     flex-flow: row wrap;

@@ -10,7 +10,9 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'The best Betting Sites and Bonus Offers from Online Bookmakers. It has never been easier to find the best bonus offers available,including sport bonus, casino bonus and daily betting value tips.Find the best Bonus Offers now!' },
+      { hid: 'og:description', name: 'og:description', content: 'The best Betting Sites and Bonus Offers from Online Bookmakers. It has never been easier to find the best bonus offers available,including sport bonus, casino bonus and daily betting value tips.Find the best Bonus Offers now!' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -40,6 +42,20 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    [
+      'nuxt-fontawesome', {
+        imports: [
+          {
+            set: '@fortawesome/free-solid-svg-icons',
+            icons: ['fas']
+          },
+          {
+            set: '@fortawesome/free-brands-svg-icons',
+            icons: ['fab']
+          }
+        ]
+      }
+    ],
     // https://go.nuxtjs.dev/buefy
     'nuxt-buefy',
     // https://go.nuxtjs.dev/axios

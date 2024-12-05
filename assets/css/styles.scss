@@ -1,0 +1,308 @@
+// CUSTOM BREAKPOINTS
+$screen-xxs: 400px;
+$screen-xs: 576px;
+$screen-sm: 768px;
+$screen-md: 1025px;
+$screen-lg: 1200px;
+
+// Bookies colors
+$bookies: (
+  'bet365': #126e51,
+  'betway': #000000,
+  '888sport': #f7661d,
+  'coral': #074d8d,
+  'betfair': #f7b234,
+  'william-hill': #00143c,
+  'betvictor': #44b6e5,
+  'bwin': #44b6e5,
+  'unibet': #34a338,
+  'ladbrokes': #f01e28,
+  'paddy-power': #014833,
+  'sportingbet': #0988d1,
+  'betfred': #004990,
+  '10bet': #4e454a,
+  'tipbet': #cc0001,
+  '32red': #EB1118,
+  'leovegas': #fd5c3c,
+  'dreamvegas': #011c35,
+  'partycasino': #211551,
+  'allbritishcasino': #010e2b,
+  'genesiscasino': #070920,
+  'grandivy': #937e49,
+  'playzee': #fcb316,
+  'casiplay': #03111e,
+  'funcasino': #1e8ea6,
+  '777': #bc3554,
+  'galacasino': #5b4e36,
+  '888casino': #7ffc02,
+  'tigergaming': #c07617,
+  'pokerstars': #D70022,
+  'skypoker': #176bc4,
+  '888poker': #007cf7,
+);
+
+@each $key, $value in $bookies {
+  .bg-#{$key} {
+    background: #{$value} !important;
+    border-color: #{$value} !important;
+  }
+
+  .color-#{$key} {
+    color: #{$value} !important;
+  }
+}
+
+main {
+  height: 100vh;
+}
+
+body {
+  background: #f8fafc;
+  font-family: "Nunito";
+}
+
+// Custom helpers
+.border-bottom-green {
+  border-bottom: 1px solid #14805e;
+}
+
+.hero-dark-background {
+  background-color: #343a40;
+}
+
+.text-muted {
+  color: #6c757d !important;
+}
+
+// Layout
+.container-sm {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.col-sm-4, .col-sm-8, .col-sm-6, .col-md-3, .col-6 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.col-sm-4, .col-sm-8, .col-sm-6 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.col-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.col-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+@media (min-width: $screen-xs) {
+  .col-sm-8 {
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+  }
+
+  .col-sm-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+
+  .col-sm-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (min-width: $screen-sm) {
+  .col-md-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+ul.ib-list {
+  padding-inline-start: 15px;
+
+  li {
+    font-size: .9rem;
+    margin-bottom: 10px;
+
+    &:before {
+      border-color: #14805e;
+      color: #14805e;
+      content: " ▶";
+      margin-right: 5px;
+    }
+  }
+}
+
+// Mobile Nav
+.mobile-nav {
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background: #ffffff;
+  display: flex;
+  height: 50vh;
+  width: 100%;
+  z-index: 2;
+
+  @media (max-width: $screen-sm) {
+    height: 100vh;
+  }
+}
+
+// Card offers carousel
+.slider-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin: auto;
+
+  .slider-wrapper {
+    overflow: hidden;
+    width: 90%;
+    margin: 0 auto;
+
+    @media (max-width: $screen-sm) {
+      width: 100%;
+      margin-bottom: 50px;
+    }
+
+    .slider-track {
+      display: flex;
+      transition: transform 0.3s ease-in-out;
+
+      .slider-card {
+        flex: 0 0 100%;
+
+        @media (min-width: $screen-sm) {
+          flex: 0 0 auto;
+        }
+
+        .offer-text {
+          margin: 0 5px;
+          max-width: 100%;
+          height: 100%;
+          border-radius: 10px;
+          font-weight: 600;
+          border: 1px solid #ddd;
+          padding: 12px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, .1);
+
+          @media (min-width: $screen-sm) {
+            width: 410px;
+          }
+
+          .offer-header {
+            margin: 0 10px 12px;
+            min-height: 50px;
+
+            @media (max-width: $screen-sm) {
+              text-align: center;
+              font-size: 1rem;
+            }
+
+            .offer-image {
+              @media (max-width: $screen-sm) {
+                img {
+                  margin: 10px auto;
+                }
+              }
+
+              @media (min-width: $screen-sm) {
+                width: 80px;
+                margin: 0;
+              }
+            }
+          }
+        }
+
+        .offer-terms {
+          white-space: break-spaces;
+          margin: 15px 0 0;
+          padding: 10px 0 0;
+          border-top: 1px solid #ddd;
+          font-weight: 400;
+          font-size: 12px;
+          z-index: 2;
+          display: -webkit-box;
+          position: relative;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          color: #070920;
+        }
+      }
+    }
+  }
+
+  .slider-arrow {
+    position: absolute;
+    bottom: 0;
+    background: #14805e;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+
+    &.left {
+      left: 30%;
+    }
+
+    &.right {
+      right: 30%;
+    }
+
+    @media (min-width: $screen-sm) {
+      top: 50%;
+      padding: 5px;
+      transform: translateY(-50%);
+
+      &.left {
+        left: 0;
+      }
+
+      &.right {
+        right: 0;
+      }
+    }
+
+    &:disabled {
+      background: rgba(0, 0, 0, 0.3);
+      cursor: not-allowed;
+    }
+  }
+}
+
+// Texts
+.ib-link {
+  color: #1976d2;
+  font-weight: 600;
+  text-decoration: underline;
+}

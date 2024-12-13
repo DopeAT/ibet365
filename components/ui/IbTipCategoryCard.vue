@@ -1,21 +1,19 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import type { ITipCategory } from '~/types'
+import type { IBetCategoryApi } from '~/types'
 
 const props = defineProps({
   category: {
-    type: Object as PropType<ITipCategory>,
+    type: Object as PropType<IBetCategoryApi>,
     required: true
   }
 })
 
 const tipCategory = computed(() => {
-  const totalOdds = props.category?.tips.reduce((acc, cur) => acc * cur.odds, 1)
-
   return {
-    title: `${props.category.title} ${props.category.tips.length ? `(${props.category.tips.length})` : ''}`,
-    slug: props.category.slug,
-    odds: totalOdds.toFixed(2)
+    title: `${props.category.title} ${props.category.bets.length ? `(${props.category.bets.length})` : ''}`,
+    slug: '/free-betting-tips-today/',
+    odds: betsOdds(props.category.bets)
   }
 })
 </script>

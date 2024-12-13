@@ -1,42 +1,14 @@
 <script setup lang="ts">
 const offersStore = useOffersStore()
+const challengesStore = useChallengesStore()
+const betCategoriesStore = useBetCategoriesStore()
 
+const challenges = computed(() => challengesStore.getChallenges)
 const sportsOffers = computed(() => offersStore.getSportOffers)
+const betCategories = computed(() => betCategoriesStore.getBetCategories)
 
-const tips = [
-  { title: 'VIP Betting Tips', slug: '', description: '', tips: [{ odds: 1.72 }, { odds: 2.37 }] },
-  { title: 'Match Goals O/U', slug: '', description: '', tips: [{ odds: 1.77 }, { odds: 2.37 }] },
-  { title: 'Bankroll Builder', slug: '', description: '', tips: [{ odds: 1.77 }, { odds: 2.37 }] },
-  { title: 'Accumulator', slug: '', description: '', tips: [{ odds: 1.77 }, { odds: 2.37 }] }
-]
-
-const challenges = [
-  {
-    title: 'Bet challenge: £10 to £500',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.',
-    status: 'In progress',
-    totalBets: 15,
-    slug: '/',
-    tips: [{ stake: 20, odds: 1.77 }, { stake: 37.25, odds: 2.37 }]
-  },
-  {
-    title: 'Bet challenge: £25 to £1000',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.',
-    status: 'In progress',
-    totalBets: 15,
-    slug: '/',
-    tips: [{ stake: 20, odds: 1.77 }, { stake: 37.25, odds: 2.37 }]
-  },
-  {
-    title: 'Bet challenge: £50 to £5000',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.',
-    status: 'In progress',
-    totalBets: 15,
-    slug: '/',
-    tips: [{ stake: 20, odds: 1.77 }, { stake: 37.25, odds: 2.37 }, { stake: 37.25, odds: 2.37 }, { stake: 37.25, odds: 2.37 }, { stake: 437.25, odds: 2.37 }]
-  }
-]
-
+useAsyncData(async () => await challengesStore.fetchChallenges())
+useAsyncData(async () => await betCategoriesStore.fetchBetCategories())
 useAsyncData(async () => await offersStore.fetchSportBookies())
 </script>
 
@@ -56,7 +28,7 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
 
             <div class="row">
               <div
-                v-for="(category, index) in tips"
+                v-for="(category, index) in betCategories"
                 :key="`category-col-${index}`"
                 class="col-sm-6 mb-5"
               >

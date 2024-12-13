@@ -1,36 +1,12 @@
 <script setup lang="ts">
 const offersStore = useOffersStore()
+const challengesStore = useChallengesStore()
 
 const sportsOffers = computed(() => offersStore.getSportOffers)
-
-const challenges = [
-  {
-    title: 'Bet challenge: £10 to £500',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.',
-    status: 'In progress',
-    totalBets: 15,
-    slug: '/challenge-bets/10-500-bet-challenge',
-    tips: [{ stake: 20, odds: 1.77 }, { stake: 37.25, odds: 2.37 }]
-  },
-  {
-    title: 'Bet challenge: £25 to £1000',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.',
-    status: 'In progress',
-    totalBets: 15,
-    slug: '/',
-    tips: [{ stake: 20, odds: 1.77 }, { stake: 37.25, odds: 2.37 }]
-  },
-  {
-    title: 'Bet challenge: £50 to £5000',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.',
-    status: 'In progress',
-    totalBets: 15,
-    slug: '/',
-    tips: [{ stake: 20, odds: 1.77 }, { stake: 37.25, odds: 2.37 }, { stake: 37.25, odds: 2.37 }, { stake: 37.25, odds: 2.37 }, { stake: 437.25, odds: 2.37 }]
-  }
-]
+const challenges = computed(() => challengesStore.getChallenges)
 
 useAsyncData(async () => await offersStore.fetchSportBookies())
+useAsyncData(async () => await challengesStore.fetchChallenges())
 </script>
 
 <template>
@@ -80,7 +56,3 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
     </div>
   </div>
 </template>
-
-<style scoped>
-
-</style>

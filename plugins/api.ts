@@ -1,9 +1,11 @@
 import { type FetchOptions, $fetch } from 'ofetch'
-import { BookiesApi, TrackingApi } from '~/services'
+import { BookiesApi, TrackingApi, ChallengeApi, BetCategoryApi } from '~/services'
 
 interface Api {
   bookies: BookiesApi
   tracking: TrackingApi
+  challenge: ChallengeApi
+  betCategory: BetCategoryApi
 }
 
 declare module '#app' {
@@ -21,7 +23,9 @@ export default defineNuxtPlugin(({ $config }) => {
 
   const api: Api = {
     bookies: new BookiesApi(apiFetcher),
-    tracking: new TrackingApi(apiFetcher)
+    tracking: new TrackingApi(apiFetcher),
+    challenge: new ChallengeApi(apiFetcher),
+    betCategory: new BetCategoryApi(apiFetcher)
   }
 
   return {

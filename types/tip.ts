@@ -1,31 +1,18 @@
-export enum EOddsType {
-  FRACTION = 'fraction',
-  DECIMAL = 'decimal'
-}
-
-export enum ETipResult {
-  IN_PROGRESS = 'In Progress',
-  WIN = 'Win',
-  LOSE = 'Lose',
-  VOID = 'Void'
-}
-
-export interface ITipCategory {
-  title: string
-  slug: string
+export interface ITipApi {
+  id: number
+  odds: number
+  starts: string
   description: string
-  tips: { odds: number }[]
-}
-
-export interface IChallenge {
-  title: string
-  slug: string
-  description: string
-  status: string
-  totalBets: number
-  tips: { odds: number, stake: number }[]
-}
-
-export interface IBetTipApp {
-
+  homeTeam: { name: string, logo: { url: string } }
+  awayTeam: { name: string, logo: { url: string } }
+  league: {
+    title: string
+    id: string
+    logo: { url: string }
+    country: {
+      name: string
+      id: string
+      flag: { slug: string }
+    }
+  }
 }

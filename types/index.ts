@@ -40,11 +40,21 @@ export interface INav {
   href: string
 }
 
+export enum EStatus {
+  IN_PROGRESS = 'In progress',
+  WIN = 'Win',
+  LOSE = 'Lose',
+  VOID = 'Void'
+}
+
 export * from './tip'
+export * from './bet'
 export * from './dates'
 export * from './bonus'
 export * from './offers'
 export * from './bookies'
 export * from './features'
 export * from './tracking'
+export * from './challenge'
 export * from './catogories'
+export * from './betCategory'

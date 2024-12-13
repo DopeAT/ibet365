@@ -1,28 +1,42 @@
 <script setup lang="ts">
-const offersStore = useOffersStore()
+import { tipResult, tipsOdds } from '~/utils'
+import type { IBetApi } from '~/types'
 
+const route = useRoute()
+
+const offersStore = useOffersStore()
+const challengesStore = useChallengesStore()
+
+const challenge = computed(() => challengesStore.getChallenge)
 const sportsOffers = computed(() => offersStore.getSportOffers)
 
 const challengeOffer = { id: 5, name: 'Betfair', slug: 'betfair', url: 'https://www.betfair.com/', description: 'Discover everything you need to know about Betfair in our comprehensive review on myBetBible. Explore Betfair\'s unique betting exchange, vast sports markets, and competitive odds that set it apart from traditional bookmakers. Take advantage of generous bonuses, including welcome offers, cashback deals, and enhanced odds promotions. Whether you\'re into football, horse racing, or in-play betting, Betfair has options for every bettor. Visit myBetBible today and learn how to claim exclusive Betfair bonuses to boost your betting experience!', logo: { url: '/uploads/betfair_096e313225.png' }, bonuses: [{ id: 10, name: 'Betfair Welcome Bonus', title: 'Bet £10 bet builder on sportsbook get £40 in free bet builder bet plus 10 FREE SPINS', category: { id: 1, name: 'Sports', slug: 'sports' } }] }
 
 const { openModal, isOpen, closeModal } = useDialog()
 
+const betStatusInfo = (bet: IBetApi) => tipResult(bet.betStatus)
+
+useAsyncData(async () => await challengesStore.fetchChallenge(route.params.id as string))
 useAsyncData(async () => await offersStore.fetchSportBookies())
 </script>
 
 <template>
   <div>
-    <div class="betting-tips-section py-5">
+    <div
+      v-if="challenge"
+      class="betting-tips-section py-5"
+    >
       <div class="container-sm">
         <div class="row">
           <div class="col-sm-8">
             <h1 class="font-semibold text-xl border-green border-b">
-              Bet challenge: £10 to £500
+              {{ challenge.title }}
             </h1>
 
-            <p class="my-3">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid doloribus ea ex facilis impedit iusto minima perspiciatis placeat quasi, quia, sapiente sed soluta! Hic reprehenderit, sapiente. Optio provident ratione veritatis!
-            </p>
+            <div
+              class="my-3"
+              v-html="challenge.description"
+            />
 
             <ui-ib-dialog
               :is-open="isOpen"
@@ -72,42 +86,45 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
                 </div>
 
                 <div
+                  v-for="(bet, index) in challenge.bets"
+                  :key="`challenge-bet-${index}`"
                   class="bookies-bonus sm:flex flex-row flex-wrap max-sm:text-center"
                 >
                   <div class="basis-1/12">
-                    1
+                    {{ index + 1 }}
                   </div>
 
                   <div class="basis-4/12">
                     <div class="font-semibold max-sm:my-5 text-green">
-                      AEK Athens home win
+                      {{ bet.title }}
                     </div>
                   </div>
 
                   <div class="basis-3/12">
-                    15 Mar 2025
+                    {{ formatDate(bet.date) }}
                   </div>
 
                   <div class="basis-1/12">
-                    £150
+                    £{{ bet.stake }}
                   </div>
 
                   <div class="basis-1/12">
-                    1.55
+                    {{ tipsOdds(bet.tips) }}
                   </div>
 
                   <div class="basis-1/12">
                     <font-awesome
                       class="text-blue-600 cursor-pointer"
                       icon="eye"
-                      @click="toggleDialog"
+                      @click="openModal"
                     />
                   </div>
 
                   <div class="basis-1/12">
                     <font-awesome
-                      class="text-green"
-                      icon="check"
+                      :icon="betStatusInfo(bet).icon"
+                      :class="betStatusInfo(bet).class"
+                      :title="betStatusInfo(bet).title"
                     />
                   </div>
                 </div>
@@ -160,7 +177,3 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
     </div>
   </div>
 </template>
-
-<style scoped>
-
-</style>

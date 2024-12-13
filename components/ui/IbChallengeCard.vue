@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import type { IChallenge } from '~/types'
+import type { IChallengeApi } from '~/types'
+import { tipResult } from '~/utils'
 
 const props = defineProps({
   challenge: {
-    type: Object as PropType<IChallenge>,
+    type: Object as PropType<IChallengeApi>,
     required: true
   }
 })
 
-const currentBank = computed(() => props.challenge?.tips[props.challenge?.tips.length - 1].stake)
+const betStatusInfo = computed(() => tipResult(props.challenge.challengeStatus))
 </script>
 
 <template>
@@ -18,25 +19,32 @@ const currentBank = computed(() => props.challenge?.tips[props.challenge?.tips.l
       {{ challenge.title }}
     </div>
 
-    <p class="text-gray-700 text-base mb-3">
-      {{ challenge.description }}
-    </p>
+    <div
+      class="text-gray-700 text-base mb-3"
+      v-html="challenge.description"
+    />
 
     <div class="flex justify-between items-center border-t py-3">
-      <div class="text-green">
-        {{ challenge.status }}
+      <div>
+        <font-awesome
+          size="xl"
+          :icon="betStatusInfo.icon"
+          :class="betStatusInfo.class"
+          :title="betStatusInfo.title"
+        />
       </div>
+
       <nuxt-link
-        to="/"
+        :to="`challenge-bets/${challenge.slug}`"
         class="font-semibold no-underline"
       >
-        Bets: {{ challenge.tips.length + ' / ' + challenge.totalBets }}
+        Bets: {{ challenge.bets.length + ' / ' + challenge.totalBets }}
       </nuxt-link>
       <div>
-        <span>Current bank: £{{ currentBank }}</span>
+        <span>Current bank: £{{ challenge.bank }}</span>
       </div>
       <nuxt-link
-        :to="challenge.slug"
+        :to="`challenge-bets/${challenge.slug}`"
         class="text-green underline font-semibold "
       >
         See bets
@@ -44,7 +52,3 @@ const currentBank = computed(() => props.challenge?.tips[props.challenge?.tips.l
     </div>
   </div>
 </template>
-
-<style scoped>
-
-</style>

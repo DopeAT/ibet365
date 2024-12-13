@@ -40,6 +40,8 @@ export interface INav {
   href: string
 }
 
+export * from './tip'
+export * from './dates'
 export * from './bonus'
 export * from './offers'
 export * from './bookies'

@@ -3,6 +3,40 @@ const offersStore = useOffersStore()
 
 const sportsOffers = computed(() => offersStore.getSportOffers)
 
+const tips = [
+  { title: 'VIP Betting Tips (2)', slug: '', description: '', tips: [{ odds: 1.72 }, { odds: 2.37 }] },
+  { title: 'Match Goals O/U', slug: '', description: '', tips: [{ odds: 1.77 }, { odds: 2.37 }] },
+  { title: 'Bankroll Builder', slug: '', description: '', tips: [{ odds: 1.77 }, { odds: 2.37 }] },
+  { title: 'Accumulator', slug: '', description: '', tips: [{ odds: 1.77 }, { odds: 2.37 }] }
+]
+
+const challenges = [
+  {
+    title: 'Bet challenge: £10 to £500',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.',
+    status: 'In progress',
+    totalBets: 15,
+    slug: '/challenge-bets/10-500-challenge-bet',
+    tips: [{ stake: 20, odds: 1.77 }, { stake: 37.25, odds: 2.37 }]
+  },
+  {
+    title: 'Bet challenge: £25 to £1000',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.',
+    status: 'In progress',
+    totalBets: 15,
+    slug: '/',
+    tips: [{ stake: 20, odds: 1.77 }, { stake: 37.25, odds: 2.37 }]
+  },
+  {
+    title: 'Bet challenge: £50 to £5000',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.',
+    status: 'In progress',
+    totalBets: 15,
+    slug: '/',
+    tips: [{ stake: 20, odds: 1.77 }, { stake: 37.25, odds: 2.37 }, { stake: 37.25, odds: 2.37 }, { stake: 37.25, odds: 2.37 }, { stake: 437.25, odds: 2.37 }]
+  }
+]
+
 useAsyncData(async () => await offersStore.fetchSportBookies())
 </script>
 
@@ -22,11 +56,20 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
               Check in for the best free football betting tips for today’s matches. Our football tips are made by industry experts, giving you the inside scoop on all the big matches. Take a look through our selection of tips below, and good luck!
             </p>
 
-            <div class="bg-white p-5 my-5">
-              #Todays tips goes here#
+            <div class="row">
+              <div
+                v-for="(category, index) in tips"
+                :key="`category-col-${index}`"
+                class="col-sm-6 mb-5"
+              >
+                <ui-ib-tip-category-card
+                  :key="`category-card-${index}`"
+                  :category="category"
+                />
+              </div>
             </div>
 
-            <h1 class="font-semibold text-xl border-green border-b">
+            <h1 class="font-semibold text-xl border-green border-b mt-5">
               Challenge Bets
             </h1>
 
@@ -34,11 +77,18 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
               Some description here for the challenge bets
             </p>
 
-            <div class="bg-white p-5 my-5">
-              #Challenge bets here
+            <div
+              v-for="(challenge, idx) in challenges"
+              :key="`challenge-section-${idx}`"
+              class="my-5"
+            >
+              <ui-ib-challenge-card
+                :key="`challenge-card-${idx}`"
+                :challenge="challenge"
+              />
             </div>
 
-            <div class="bg-white rounded overflow-hidden shadow-lg">
+            <div class="bg-white rounded overflow-hidden shadow-lg mt-12">
               <div class="px-6 py-4">
                 <h6 class="font-bold text-xl mb-2">
                   Free Betting Tips Today
@@ -130,5 +180,3 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
     </div>
   </div>
 </template>
-
-<style scoped></style>

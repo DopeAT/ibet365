@@ -13,10 +13,11 @@
     "@nuxt/eslint": "^0.7.1",
     "@nuxt/image": "^1.8.1",
     "@nuxtjs/google-fonts": "^3.2.0",
-    "@pinia/nuxt": "^0.8.0",
-    "@vesp/nuxt-fontawesome": "^1.1.0",
     "@nuxtjs/seo": "^2.0.0-rc.23",
     "@nuxtjs/tailwindcss": "^6.12.2",
+    "@pinia/nuxt": "^0.8.0",
+    "@vesp/nuxt-fontawesome": "^1.1.0",
+    "date-fns": "^4.1.0",
     "nuxt": "^3.14.1592",
     "pinia": "^2.2.8",
     "qs": "^6.13.1",
@@ -31,9 +32,9 @@
     "@types/qs": "^6.9.17",
     "@typescript-eslint/eslint-plugin": "^8.15.0",
     "@typescript-eslint/parser": "^8.15.0",
-    "typescript": "^5.7.2",
     "sass": "^1.81.0",
-    "sass-loader": "^16.0.3"
+    "sass-loader": "^16.0.3",
+    "typescript": "^5.7.2"
   },
   "overrides": {
     "vue": "latest"

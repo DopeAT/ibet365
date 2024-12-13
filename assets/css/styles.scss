@@ -89,14 +89,14 @@ body {
 }
 
 
-.col-sm-4, .col-sm-8, .col-sm-6, .col-md-3, .col-6 {
+.col-sm-3, .col-sm-4, .col-sm-8, .col-sm-6, .col-md-3, .col-6 {
   position: relative;
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
 }
 
-.col-sm-4, .col-sm-8, .col-sm-6 {
+.col-sm-4, .col-sm-8, .col-sm-6, .col-sm-9 {
   flex: 0 0 100%;
   max-width: 100%;
 }
@@ -117,6 +117,11 @@ body {
     max-width: 66.666667%;
   }
 
+  .col-sm-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
   .col-sm-4 {
     flex: 0 0 33.333333%;
     max-width: 33.333333%;
@@ -125,6 +130,11 @@ body {
   .col-sm-6 {
     flex: 0 0 50%;
     max-width: 50%;
+  }
+
+  .col-sm-9 {
+    flex: 0 0 75%;
+    max-width: 75%;
   }
 }
 
@@ -137,6 +147,11 @@ body {
   .col-md-6 {
     flex: 0 0 50%;
     max-width: 50%;
+  }
+
+  .col-md-9 {
+    flex: 0 0 75%;
+    max-width: 75%;
   }
 }
 
@@ -305,4 +320,145 @@ ul.ib-list {
   color: #1976d2;
   font-weight: 600;
   text-decoration: underline;
+}
+
+// ### Components ###//
+
+// Tip box
+.tip-odds-box {
+  margin: 10px;
+  padding: 15px 10px 0;
+  text-align: center;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  position: relative;
+  font-weight: 700;
+  -moz-box-shadow: 0 2px 2px #888;
+  -webkit-box-shadow: 0 2px 2px #888;
+  box-shadow: 0 2px 2px #888;
+  background: #14805e;
+  color: #ffffff;
+
+  &:before {
+    left: 11px;
+  }
+
+  &:after {
+    right: 11px;
+  }
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    width: 8px;
+    height: 8px;
+    background: #111;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: 0 1px 1px #fff;
+    -webkit-box-shadow: 0 1px 1px #fff;
+    box-shadow: 0 1px 1px #fff;
+  }
+
+  .odds-title {
+    display: block;
+    font-size: 16px;
+    -moz-border-radius-bottomright: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top: 1px solid white;
+    padding: 5px;
+
+    &:before {
+      left: 13px;
+    }
+
+    &:before,
+    &:after {
+      content: '';
+      float: left;
+      position: absolute;
+      top: -5px;
+      width: 4px;
+      height: 14px;
+      background: #dadada;
+      z-index: 2;
+      -moz-border-radius: 2px;
+      -webkit-border-radius: 2px;
+      border-radius: 2px;
+    }
+
+    &:after {
+      right: 13px;
+    }
+  }
+}
+
+// Landing legal pages
+.landing-legal-page {
+  p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    font-weight: 600;
+  }
+
+  ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 40px;
+    unicode-bidi: isolate;
+    margin-bottom: 1rem;
+    margin-top: 0;
+  }
+}
+
+// Bonus Table
+.bonus-table {
+  .bonus-header {
+    justify-content: space-between;
+    align-items: center;
+    background: #d6d6d6;
+    padding: 20px 40px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 4px;
+    margin: 0;
+  }
+
+  .bookies-bonus {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px 30px;
+    margin: 5px 0;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+// Transition
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 500ms ease-out;
 }

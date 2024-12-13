@@ -43,11 +43,18 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
               :close-modal="closeModal"
             >
               <h2 class="text-2xl font-bold mb-4">
-                This is a Modal
+                Bet explanation
               </h2>
-              <p class="mb-4">
-                Here is some content inside the modal. The page behind it is non-scrollable.
-              </p>
+              <div class="mb-4">
+                <div>
+                  <div>Country: Greece</div>
+                  <div>League: Super League 1</div>
+                  <div>Teams: Arsenal vs Aston Villa</div>
+                  <div>Tip: Home Win</div>
+                  <div>Starts: 14 Dec 2024 - 20:00</div>
+                  <div>Odd: 1.75</div>
+                </div>
+              </div>
               <button
                 class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-700"
                 @click="closeModal"

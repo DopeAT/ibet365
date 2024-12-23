@@ -7,6 +7,10 @@ const challenges = computed(() => challengesStore.getChallenges)
 const sportsOffers = computed(() => offersStore.getSportOffers)
 const betCategories = computed(() => betCategoriesStore.getBetCategories)
 
+const categories = computed(() => {
+  return betCategories.value.filter(cat => cat.bets.length)
+})
+
 useAsyncData(async () => await challengesStore.fetchChallenges())
 useAsyncData(async () => await betCategoriesStore.fetchBetCategories())
 useAsyncData(async () => await offersStore.fetchSportBookies())
@@ -20,26 +24,28 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
       <div class="container-sm">
         <div class="row">
           <div class="col-sm-8">
-            <h1 class="font-semibold text-xl border-green border-b">
-              Free Football Tips Today
-            </h1>
+            <template v-if="categories.length">
+              <h1 class="font-semibold text-xl border-green border-b">
+                Free Football Tips Today
+              </h1>
 
-            <p class="my-3">
-              Check in for the best free football betting tips for today’s matches. Our football tips are made by industry experts, giving you the inside scoop on all the big matches. Take a look through our selection of tips below, and good luck!
-            </p>
+              <p class="my-3">
+                Check in for the best free football betting tips for today’s matches. Our football tips are made by industry experts, giving you the inside scoop on all the big matches. Take a look through our selection of tips below, and good luck!
+              </p>
 
-            <div class="row">
-              <div
-                v-for="(category, index) in betCategories"
-                :key="`category-col-${index}`"
-                class="col-sm-6 mb-5"
-              >
-                <ui-ib-tip-category-card
-                  :key="`category-card-${index}`"
-                  :category="category"
-                />
+              <div class="row">
+                <div
+                  v-for="(category, index) in categories"
+                  :key="`category-col-${index}`"
+                  class="col-sm-6 mb-5"
+                >
+                  <ui-ib-tip-category-card
+                    :key="`category-card-${index}`"
+                    :category="category"
+                  />
+                </div>
               </div>
-            </div>
+            </template>
 
             <h1 class="font-semibold text-xl border-green border-b mt-5">
               Challenge Bets

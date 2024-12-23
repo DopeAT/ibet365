@@ -61,6 +61,10 @@ body {
   font-family: "Nunito";
 }
 
+.mw-250 {
+  min-width: 250px;
+}
+
 // Custom helpers
 .border-bottom-green {
   border-bottom: 1px solid #14805e;
@@ -461,4 +465,104 @@ ul.ib-list {
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 500ms ease-out;
+}
+
+// Today bets
+.today-bets {
+  .win {
+    border-right: 5px solid #14805e;
+  }
+
+  .lose {
+    border-right: 5px solid #EB1118;
+  }
+}
+
+.bet-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+
+  @media (max-width: $screen-sm) {
+    flex-direction: column;
+  }
+
+  .bet-card-info {
+    max-width: 150px;
+
+    @media (max-width: $screen-sm) {
+      padding:  0 0 15px 0;
+    }
+
+    .league-logo {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  .bet-teams {
+    @media (max-width: $screen-sm) {
+      padding: 15px 0;
+      border-top: 1px solid rgb(209 213 219 / var(--tw-bg-opacity, 1));;
+    }
+
+    .bet-team {
+      .bet-team-logo {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  .bet-info {
+    display: flex;
+    flex-basis: 33%;
+    justify-content: space-between;
+
+    @media (max-width: $screen-sm) {
+      border-top: 1px solid rgb(209 213 219 / var(--tw-bg-opacity, 1));;
+      padding: 15px 0;
+
+      div:first-child {
+        margin-right: 25px;
+
+        &.mr-0 {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+.tips-bettor {
+  @media (max-width: $screen-sm) {
+    margin: 5px auto 25px;
+  }
+}
+
+.bet-money-lines-cards {
+  .label {
+    padding: 15px;
+  }
+
+  .info {
+    padding: 15px;
+    color: #ffffff;
+    font-weight: 600;
+    background: #126e51;
+    width: 80px;
+    text-align: center;
+  }
+}
+
+.bet-bottom-info {
+  .label {
+    margin-right: 10px;
+  }
+
+  .value {
+    font-weight: 600;
+  }
 }

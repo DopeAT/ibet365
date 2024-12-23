@@ -1,5 +1,13 @@
 <script setup lang="ts">
 const { isOpen, closeModal } = useDialog()
+
+defineProps({
+  title: {
+    type: String,
+    required: false,
+    default: ''
+  }
+})
 </script>
 
 <template>
@@ -9,16 +17,22 @@ const { isOpen, closeModal } = useDialog()
       class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
     >
       <div
-        class="relative bg-white rounded-lg shadow-lg max-w-xl w-full p-6"
+        class="relative bg-white rounded-lg shadow-lg max-w-2xl w-full p-6"
         @click.stop
       >
-        <!-- Close button -->
-        <button
-          class="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
-          @click="closeModal"
-        >
-          ✕
-        </button>
+        <div class="flex justify-between items-center border-b pb-5">
+          <h3 class="text-2xl font-bold">
+            {{ title }}
+          </h3>
+
+          <!-- Close button -->
+          <button
+            class="text-gray hover:text-gray-500"
+            @click="closeModal"
+          >
+            ✕
+          </button>
+        </div>
 
         <!-- Slot for modal content -->
         <slot />

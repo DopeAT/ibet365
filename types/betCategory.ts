@@ -6,5 +6,7 @@ export interface IBetCategoryApi {
   slug: string | null
   description: string
   betStatus: EStatus
+  bookieSlug: string
+  stake: number
   bets: IBetApi[]
 }

@@ -36,6 +36,10 @@ export const useOffersStore = defineStore('offersStore', () => {
     state.casino = res.value!.data.bookies.filter(b => b.bonuses.length > 0)
   }
 
+  async function fetchBookie(slug: string) {
+    return $api.bookies.fetchBookie(slug)
+  }
+
   async function fetchPokerBookies() {
     const res = await $api.bookies.fetchByCategory(ECategories.POKER)
 
@@ -56,6 +60,7 @@ export const useOffersStore = defineStore('offersStore', () => {
     fetchSportBookies,
     fetchCasinoBookies,
     getAllOffers,
+    fetchBookie,
     getSportOffers,
     getPokerOffers,
     getCasinoOffers,

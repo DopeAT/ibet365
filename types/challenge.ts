@@ -8,5 +8,6 @@ export interface IChallengeApi {
   challengeStatus: EStatus
   totalBets: number
   bank: number
+  bookieSlug: string
   bets: IBetApi[]
 }

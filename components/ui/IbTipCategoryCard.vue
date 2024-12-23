@@ -2,6 +2,8 @@
 import type { PropType } from 'vue'
 import type { IBetCategoryApi } from '~/types'
 
+const router = useRouter()
+
 const props = defineProps({
   category: {
     type: Object as PropType<IBetCategoryApi>,
@@ -16,10 +18,17 @@ const tipCategory = computed(() => {
     odds: betsOdds(props.category.bets)
   }
 })
+
+const redirectToTips = () => {
+  router.push(tipCategory.value.slug)
+}
 </script>
 
 <template>
-  <div class="bg-white rounded overflow-hidden shadow-lg flex justify-between items-center cursor-pointer">
+  <div
+    class="bg-white rounded overflow-hidden shadow-lg flex justify-between items-center cursor-pointer"
+    @click="redirectToTips"
+  >
     <div class="tip-odds-box">
       <div>{{ tipCategory.odds }}</div>
       <span class="odds-title">Odds</span>

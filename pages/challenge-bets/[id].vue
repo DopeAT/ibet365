@@ -1,20 +1,28 @@
 <script setup lang="ts">
 import { tipResult, tipsOdds } from '~/utils'
-import type { IBetApi } from '~/types'
+import { EDateFormats, type IBetApi } from '~/types'
+import IbBetDetailsCard from '~/components/ui/IbBetDetailsCard.vue'
 
 const route = useRoute()
 
 const offersStore = useOffersStore()
 const challengesStore = useChallengesStore()
 
+const currentBet = ref()
+
 const challenge = computed(() => challengesStore.getChallenge)
 const sportsOffers = computed(() => offersStore.getSportOffers)
 
-const challengeOffer = { id: 5, name: 'Betfair', slug: 'betfair', url: 'https://www.betfair.com/', description: 'Discover everything you need to know about Betfair in our comprehensive review on myBetBible. Explore Betfair\'s unique betting exchange, vast sports markets, and competitive odds that set it apart from traditional bookmakers. Take advantage of generous bonuses, including welcome offers, cashback deals, and enhanced odds promotions. Whether you\'re into football, horse racing, or in-play betting, Betfair has options for every bettor. Visit myBetBible today and learn how to claim exclusive Betfair bonuses to boost your betting experience!', logo: { url: '/uploads/betfair_096e313225.png' }, bonuses: [{ id: 10, name: 'Betfair Welcome Bonus', title: 'Bet £10 bet builder on sportsbook get £40 in free bet builder bet plus 10 FREE SPINS', category: { id: 1, name: 'Sports', slug: 'sports' } }] }
-
 const { openModal, isOpen, closeModal } = useDialog()
 
+const showDialog = (bet: IBetApi) => {
+  currentBet.value = bet
+  openModal()
+}
+
 const betStatusInfo = (bet: IBetApi) => tipResult(bet.betStatus)
+
+const challengeBookie = computed(() => sportsOffers.value.find(offer => offer.slug === challenge.value!.bookieSlug)!)
 
 useAsyncData(async () => await challengesStore.fetchChallenge(route.params.id as string))
 useAsyncData(async () => await offersStore.fetchSportBookies())
@@ -39,24 +47,83 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
             />
 
             <ui-ib-dialog
+              v-if="isOpen"
+              :title="currentBet.title"
               :is-open="isOpen"
               :close-modal="closeModal"
             >
-              <h2 class="text-2xl font-bold mb-4">
-                Bet explanation
-              </h2>
-              <div class="mb-4">
+              <div class="pt-4">
+                <div
+                  v-if="currentBet.tip"
+                  class="bet-card"
+                >
+                  <div class="bet-card-info">
+                    <img
+                      :src="`https://api.ibet365.co.uk${currentBet.tip.league.logo.url}`"
+                      :alt="currentBet.tip.league.title + ' logo'"
+                      class="img-fluid mb-3 league-logo"
+                    >
+                  </div>
+                  <div class="bet-teams p-3">
+                    <div class="flex mb-3 font-semibold bet-team">
+                      <img
+                        :src="`https://api.ibet365.co.uk${currentBet.tip.homeTeam.logo.url}`"
+                        :alt="currentBet.tip.homeTeam.name"
+                        class="mr-3 bet-team-logo"
+                      >
+                      {{ currentBet.tip.homeTeam.name }}
+                    </div>
+                    <div class="flex font-semibold bet-team">
+                      <img
+                        :src="`https://api.ibet365.co.uk${currentBet.tip.awayTeam.logo.url}`"
+                        :alt="currentBet.tip.awayTeam.name"
+                        class="mr-3 bet-team-logo"
+                      >
+                      {{ currentBet.tip.awayTeam.name }}
+                    </div>
+                  </div>
+                  <div
+                    class="bet-info"
+                    style="flex-basis: 50%"
+                  >
+                    <div class="bet-tip">
+                      <h5 class="font-semibold">
+                        Tip
+                      </h5>
+                      <div
+                        v-for="(selection, idx) in currentBet.tip.tipSelections"
+                        :key="`tip-selection-${idx}`"
+                        class="text-start"
+                      >
+                        {{ selection.title }}
+                      </div>
+                    </div>
+                    <div class="bet-odds">
+                      <h5 class="font-semibold">
+                        Odds
+                      </h5>
+                      <div>{{ currentBet.tip.odds }}</div>
+                    </div>
+                  </div>
+                </div>
+
                 <div>
-                  <div>Country: Greece</div>
-                  <div>League: Super League 1</div>
-                  <div>Teams: Arsenal vs Aston Villa</div>
-                  <div>Tip: Home Win</div>
-                  <div>Starts: 14 Dec 2024 - 20:00</div>
-                  <div>Odd: 1.75</div>
+                  <hr class="my-3">
+
+                  <b>Bet information</b>
+
+                  <div class="bet-bottom-info">
+                    <span class="label">Starts:</span>
+                    <span class="value">{{ formatDate(currentBet.tip.starts, EDateFormats.DATETIME) }}</span>
+                  </div>
+                  <div class="bet-bottom-info">
+                    <span class="label">League:</span>
+                    <span class="value">{{ currentBet.tip.league.title }}</span>
+                  </div>
                 </div>
               </div>
               <button
-                class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-700"
+                class="px-4 py-2 mt-5 bg-red-500 text-white rounded-lg hover:bg-red-700"
                 @click="closeModal"
               >
                 Close
@@ -66,73 +133,100 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
             <ui-ib-bonus-card
               key="offer-card-challenge-bet"
               class="bg-white my-5"
-              :bookie="challengeOffer"
+              :bookie="challengeBookie"
             />
 
             <div class="challenge-tips">
               <div class="bonus-table container">
                 <div class="bonus-header bg-green text-white hidden sm:flex">
-                  <div class="font-semibold basis-5/12">
+                  <div class="font-semibold basis-6/12">
                     #
                   </div>
-                  <div class="font-semibold basis-1/4">
-                    &nbsp;
+                  <div class="font-semibold basis-3/12">
+                    Date
                   </div>
-                  <div class="font-semibold basis-1/12">
+                  <div class="font-semibold basis-2/12">
                     Stake
                   </div>
                   <div class="font-semibold basis-1/12">
                     Odds
-                  </div>
-                  <div class="font-semibold basis-1/12">
-                    &nbsp;
-                  </div>
-                  <div class="font-semibold basis-1/12">
-                    Result
                   </div>
                 </div>
 
                 <div
                   v-for="(bet, index) in challenge.bets"
                   :key="`challenge-bet-${index}`"
-                  class="bookies-bonus sm:flex flex-row flex-wrap max-sm:text-center"
+                  class="bookies-bonus"
                 >
-                  <div class="basis-1/12">
-                    {{ index + 1 }}
-                  </div>
+                  <div class="sm:flex flex-row flex-wrap max-sm:text-center pb-3">
+                    <div class="basis-2/12 hidden sm:block">
+                      {{ index + 1 }}
+                    </div>
 
-                  <div class="basis-4/12">
-                    <div class="font-semibold max-sm:my-5 text-green">
-                      {{ bet.title }}
+                    <div class="basis-4/12">
+                      <div class="font-semibold max-sm:my-5 text-green">
+                        Bet challenge: {{ index + 1 }}
+                      </div>
+                    </div>
+
+                    <div class="basis-3/12 hidden sm:block">
+                      {{ formatDate(bet.date) }}
+                    </div>
+
+                    <div class="basis-2/12 hidden sm:block">
+                      £{{ bet.stake }}
+                    </div>
+
+                    <div class="basis-1/12 hidden sm:block">
+                      {{ bet.tip.odds.toFixed(2) }}
                     </div>
                   </div>
 
-                  <div class="basis-3/12">
-                    {{ formatDate(bet.date) }}
-                  </div>
+                  <hr class="my-3">
 
-                  <div class="basis-1/12">
-                    £{{ bet.stake }}
-                  </div>
+                  <div
+                    v-if="bet.tip"
+                    class="bet-card"
+                  >
+                    <div class="bet-card-info">
+                      <img
+                        :src="`https://api.ibet365.co.uk${bet.tip.league.logo.url}`"
+                        :alt="bet.tip.league.title + ' logo'"
+                        class="img-fluid mb-3 league-logo"
+                      >
+                    </div>
+                    <div class="bet-teams">
+                      <div class="flex mb-3 font-semibold bet-team">
+                        <img
+                          :src="`https://api.ibet365.co.uk${bet.tip.homeTeam.logo.url}`"
+                          :alt="bet.tip.homeTeam.name"
+                          class="bet-team-logo"
+                        >
+                        <span class="mx-3">{{ bet.tip.homeTeam.name }}</span>
 
-                  <div class="basis-1/12">
-                    {{ tipsOdds(bet.tips) }}
-                  </div>
-
-                  <div class="basis-1/12">
-                    <font-awesome
-                      class="text-blue-600 cursor-pointer"
-                      icon="eye"
-                      @click="openModal"
-                    />
-                  </div>
-
-                  <div class="basis-1/12">
-                    <font-awesome
-                      :icon="betStatusInfo(bet).icon"
-                      :class="betStatusInfo(bet).class"
-                      :title="betStatusInfo(bet).title"
-                    />
+                        <span>1</span>
+                      </div>
+                      <div class="flex font-semibold bet-team">
+                        <img
+                          :src="`https://api.ibet365.co.uk${bet.tip.awayTeam.logo.url}`"
+                          :alt="bet.tip.awayTeam.name"
+                          class="bet-team-logo"
+                        >
+                        <span class="mx-3">{{ bet.tip.awayTeam.name }}</span>
+                        <span>2</span>
+                      </div>
+                    </div>
+                    <div class="bet-info">
+                      <div class="text-center bet-tip mr-0">
+                        <div
+                          v-for="(selection, idx) in bet.tip.tipSelections"
+                          :key="`tip-selection-${idx}`"
+                          class="text-center mr-0"
+                        >
+                          {{ selection.title }}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -146,7 +240,7 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eum maxime quis tenetur totam! A blanditiis corporis cumque, deserunt dolorem ea earum laborum natus quis quo tempore, totam. Debitis, natus.
             </p>
 
-            <hr>
+            <hr class="my-5">
 
             <h3 class="font-semibold text-xl border-green border-b">
               How to follow £10 to £500 Bet Challenge
@@ -154,15 +248,19 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
 
             <p class="my-3">
               We will use <a
-                href="/something"
-                class="underline text-betfair font-semibold"
-              >Bookie here</a> to complete our <strong><i>£10 to £500 Bet Challenge</i></strong>.
+                :href="challengeBookie.url"
+                target="_blank"
+                class="underline font-semibold"
+                :class="`color-${challengeBookie.slug}`"
+              >{{ challengeBookie.name }}</a> to complete our <strong><i>£10 to £500 Bet Challenge</i></strong>.
             </p>
 
             <p class="my-3">
               If you don't already have an account with them you should <a
-                href="/something"
-                class="underline text-betfair font-semibold"
+                :href="challengeBookie.url"
+                target="_blank"
+                class="underline font-semibold"
+                :class="`color-${challengeBookie.slug}`"
               >sign up</a>, so you get your bonus and find the available tips we will follow.
             </p>
           </div>

@@ -3,16 +3,14 @@ export interface ITipApi {
   odds: number
   starts: string
   description: string
-  homeTeam: { name: string, logo: { url: string } }
-  awayTeam: { name: string, logo: { url: string } }
+  homeTeam: { id: number, name: string, logo: { url: string } }
+  awayTeam: { id: number, name: string, logo: { url: string } }
+  tipSelections: [
+    { title: string }
+  ]
   league: {
     title: string
     id: string
     logo: { url: string }
-    country: {
-      name: string
-      id: string
-      flag: { slug: string }
-    }
   }
 }

@@ -7,5 +7,7 @@ export interface IBetApi {
   betStatus: EStatus
   id: number
   stake: number
-  tips: ITipApi[]
+  homeGoals: number
+  awayGoals: number
+  tip: ITipApi
 }

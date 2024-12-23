@@ -15,9 +15,9 @@ const todayBets = computed(() => betCategoriesStore.getTodayBets)
 
 useAsyncData(async () => await offersStore.fetchSportBookies())
 useAsyncData(async () => await challengesStore.fetchChallenges())
-useAsyncData(async () => {
-  await betCategoriesStore.fetchTodayBets()
+useAsyncData(async () => await betCategoriesStore.fetchTodayBets())
 
+onBeforeMount(async () => {
   for (const category of todayBets.value) {
     const foundLocalBookie = sportsOffers.value.find(offer => offer.slug === category.bookieSlug)
 

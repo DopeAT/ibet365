@@ -90,7 +90,10 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
                 <p class="text-gray-700 text-base mb-3">
                   For today's best free football betting tips, you can check out our predictions. You can the following available tips for today:
 
-                  To take full advantage of these tips, check out our <nuxt-link class="ib-link">
+                  To take full advantage of these tips, check out our <nuxt-link
+                    class="ib-link"
+                    to="/free-bets"
+                  >
                     Free Bets
                   </nuxt-link> page for the latest, best offers from UK’s best and most trusted bookmakers. We have plenty of new customer offers and, best of all, we put them all in one place, so you find everything you need in just one page. We did the boring and hard job, searching and comparing bookmakers offers, for you - so you don't have to spend time between bookmakers!
                 </p>

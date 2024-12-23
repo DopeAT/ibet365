@@ -1,26 +1,11 @@
 <script setup lang="ts">
-import { tipResult, tipsOdds } from '~/utils'
-import { EDateFormats, type IBetApi } from '~/types'
-import IbBetDetailsCard from '~/components/ui/IbBetDetailsCard.vue'
-
 const route = useRoute()
 
 const offersStore = useOffersStore()
 const challengesStore = useChallengesStore()
 
-const currentBet = ref()
-
 const challenge = computed(() => challengesStore.getChallenge)
 const sportsOffers = computed(() => offersStore.getSportOffers)
-
-const { openModal, isOpen, closeModal } = useDialog()
-
-const showDialog = (bet: IBetApi) => {
-  currentBet.value = bet
-  openModal()
-}
-
-const betStatusInfo = (bet: IBetApi) => tipResult(bet.betStatus)
 
 const challengeBookie = computed(() => sportsOffers.value.find(offer => offer.slug === challenge.value!.bookieSlug)!)
 
@@ -46,91 +31,8 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
               v-html="challenge.description"
             />
 
-            <ui-ib-dialog
-              v-if="isOpen"
-              :title="currentBet.title"
-              :is-open="isOpen"
-              :close-modal="closeModal"
-            >
-              <div class="pt-4">
-                <div
-                  v-if="currentBet.tip"
-                  class="bet-card"
-                >
-                  <div class="bet-card-info">
-                    <img
-                      :src="`https://api.ibet365.co.uk${currentBet.tip.league.logo.url}`"
-                      :alt="currentBet.tip.league.title + ' logo'"
-                      class="img-fluid mb-3 league-logo"
-                    >
-                  </div>
-                  <div class="bet-teams p-3">
-                    <div class="flex mb-3 font-semibold bet-team">
-                      <img
-                        :src="`https://api.ibet365.co.uk${currentBet.tip.homeTeam.logo.url}`"
-                        :alt="currentBet.tip.homeTeam.name"
-                        class="mr-3 bet-team-logo"
-                      >
-                      {{ currentBet.tip.homeTeam.name }}
-                    </div>
-                    <div class="flex font-semibold bet-team">
-                      <img
-                        :src="`https://api.ibet365.co.uk${currentBet.tip.awayTeam.logo.url}`"
-                        :alt="currentBet.tip.awayTeam.name"
-                        class="mr-3 bet-team-logo"
-                      >
-                      {{ currentBet.tip.awayTeam.name }}
-                    </div>
-                  </div>
-                  <div
-                    class="bet-info"
-                    style="flex-basis: 50%"
-                  >
-                    <div class="bet-tip">
-                      <h5 class="font-semibold">
-                        Tip
-                      </h5>
-                      <div
-                        v-for="(selection, idx) in currentBet.tip.tipSelections"
-                        :key="`tip-selection-${idx}`"
-                        class="text-start"
-                      >
-                        {{ selection.title }}
-                      </div>
-                    </div>
-                    <div class="bet-odds">
-                      <h5 class="font-semibold">
-                        Odds
-                      </h5>
-                      <div>{{ currentBet.tip.odds }}</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <hr class="my-3">
-
-                  <b>Bet information</b>
-
-                  <div class="bet-bottom-info">
-                    <span class="label">Starts:</span>
-                    <span class="value">{{ formatDate(currentBet.tip.starts, EDateFormats.DATETIME) }}</span>
-                  </div>
-                  <div class="bet-bottom-info">
-                    <span class="label">League:</span>
-                    <span class="value">{{ currentBet.tip.league.title }}</span>
-                  </div>
-                </div>
-              </div>
-              <button
-                class="px-4 py-2 mt-5 bg-red-500 text-white rounded-lg hover:bg-red-700"
-                @click="closeModal"
-              >
-                Close
-              </button>
-            </ui-ib-dialog>
-
             <ui-ib-bonus-card
+              v-if="challengeBookie"
               key="offer-card-challenge-bet"
               class="bg-white my-5"
               :bookie="challengeBookie"
@@ -246,23 +148,25 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
               How to follow £10 to £500 Bet Challenge
             </h3>
 
-            <p class="my-3">
-              We will use <a
-                :href="challengeBookie.url"
-                target="_blank"
-                class="underline font-semibold"
-                :class="`color-${challengeBookie.slug}`"
-              >{{ challengeBookie.name }}</a> to complete our <strong><i>£10 to £500 Bet Challenge</i></strong>.
-            </p>
+            <template v-if="challengeBookie">
+              <p class="my-3">
+                We will use <a
+                  :href="challengeBookie.url"
+                  target="_blank"
+                  class="underline font-semibold"
+                  :class="`color-${challengeBookie.slug}`"
+                >{{ challengeBookie.name }}</a> to complete our <strong><i>£10 to £500 Bet Challenge</i></strong>.
+              </p>
 
-            <p class="my-3">
-              If you don't already have an account with them you should <a
-                :href="challengeBookie.url"
-                target="_blank"
-                class="underline font-semibold"
-                :class="`color-${challengeBookie.slug}`"
-              >sign up</a>, so you get your bonus and find the available tips we will follow.
-            </p>
+              <p class="my-3">
+                If you don't already have an account with them you should <a
+                  :href="challengeBookie.url"
+                  target="_blank"
+                  class="underline font-semibold"
+                  :class="`color-${challengeBookie.slug}`"
+                >sign up</a>, so you get your bonus and find the available tips we will follow.
+              </p>
+            </template>
           </div>
 
           <div class="col-sm-4">

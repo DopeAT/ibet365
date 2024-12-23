@@ -9,14 +9,9 @@ import { EStatus, type IBetApi, type ITipApi } from '~/types'
 // }
 
 export const betsOdds = (bets: IBetApi[]) => {
-  console.log({ bets })
-  // Reduce the array to accumulate the sum of odds
-  // return bets.reduce((totalSum, bet) => {
-  //   Check if the challenge has tips and iterate over them
-  // return totalSum * bet.tip.odds
-  // }, 1).toFixed(2)
-
-  return 1.75
+  return bets.reduce((totalSum, bet) => {
+    return totalSum * bet.tip.odds
+  }, 1).toFixed(2)
 }
 
 export const tipsOdds = (tips: ITipApi[]) => {

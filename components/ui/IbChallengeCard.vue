@@ -44,7 +44,7 @@ const betStatusInfo = computed(() => tipResult(props.challenge.challengeStatus))
         <span>Current bank: £{{ challenge.bank }}</span>
       </div>
       <nuxt-link
-        :to="`challenge-bets/${challenge.slug}`"
+        :to="`/challenge-bets/${challenge.slug}`"
         class="text-green underline font-semibold "
       >
         See bets

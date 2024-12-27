@@ -47,6 +47,12 @@ export enum EStatus {
   VOID = 'Void'
 }
 
+export interface IFaq {
+  id: number
+  question: string
+  answer: string
+}
+
 export * from './tip'
 export * from './bet'
 export * from './dates'

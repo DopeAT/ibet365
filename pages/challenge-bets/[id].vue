@@ -26,11 +26,6 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
               {{ challenge.title }}
             </h1>
 
-            <div
-              class="my-3"
-              v-html="challenge.description"
-            />
-
             <ui-ib-bonus-card
               v-if="challengeBookie"
               key="offer-card-challenge-bet"
@@ -44,14 +39,23 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
                   <div class="font-semibold basis-6/12">
                     #
                   </div>
+
                   <div class="font-semibold basis-3/12">
                     Date
                   </div>
+
                   <div class="font-semibold basis-2/12">
                     Stake
                   </div>
+
                   <div class="font-semibold basis-1/12">
                     Odds
+                  </div>
+                </div>
+
+                <div v-if="!challenge.bets.length">
+                  <div class="bookies-bonus">
+                    This challenge has not started yet. Please check back later on.
                   </div>
                 </div>
 
@@ -97,6 +101,7 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
                         class="img-fluid mb-3 league-logo"
                       >
                     </div>
+
                     <div class="bet-teams">
                       <div class="flex mb-3 font-semibold bet-team">
                         <img
@@ -108,6 +113,7 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
 
                         <span>1</span>
                       </div>
+
                       <div class="flex font-semibold bet-team">
                         <img
                           :src="`https://api.ibet365.co.uk${bet.tip.awayTeam.logo.url}`"
@@ -134,39 +140,37 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
               </div>
             </div>
 
-            <h2 class="font-semibold text-xl border-green border-b">
-              What is the £10 to £500 Bet Challenge
-            </h2>
+            <div
+              v-if="challengeBookie"
+              class="bg-white rounded overflow-hidden shadow-lg mt-12"
+            >
+              <div class="px-6 py-4">
+                <p class="my-3">
+                  We will use <a
+                    :href="challengeBookie.url"
+                    target="_blank"
+                    class="underline font-semibold"
+                    :class="`color-${challengeBookie.slug}`"
+                  >{{ challengeBookie.name }}</a> to complete our <strong><i>£10 to £500 Bet Challenge</i></strong>.
+                </p>
 
-            <p class="my-3">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eum maxime quis tenetur totam! A blanditiis corporis cumque, deserunt dolorem ea earum laborum natus quis quo tempore, totam. Debitis, natus.
-            </p>
+                <p class="my-3">
+                  If you don't already have an account with them you should <a
+                    :href="challengeBookie.url"
+                    target="_blank"
+                    class="underline font-semibold"
+                    :class="`color-${challengeBookie.slug}`"
+                  >sign up</a>, so you get your bonus and find the available tips we will follow.
+                </p>
+              </div>
+            </div>
 
-            <hr class="my-5">
-
-            <h3 class="font-semibold text-xl border-green border-b">
-              How to follow £10 to £500 Bet Challenge
-            </h3>
-
-            <template v-if="challengeBookie">
-              <p class="my-3">
-                We will use <a
-                  :href="challengeBookie.url"
-                  target="_blank"
-                  class="underline font-semibold"
-                  :class="`color-${challengeBookie.slug}`"
-                >{{ challengeBookie.name }}</a> to complete our <strong><i>£10 to £500 Bet Challenge</i></strong>.
-              </p>
-
-              <p class="my-3">
-                If you don't already have an account with them you should <a
-                  :href="challengeBookie.url"
-                  target="_blank"
-                  class="underline font-semibold"
-                  :class="`color-${challengeBookie.slug}`"
-                >sign up</a>, so you get your bonus and find the available tips we will follow.
-              </p>
-            </template>
+            <div class="bg-white rounded overflow-hidden shadow-lg mt-6">
+              <div
+                class="px-6 py-4 html-section"
+                v-html="challenge.description"
+              />
+            </div>
           </div>
 
           <div class="col-sm-4">

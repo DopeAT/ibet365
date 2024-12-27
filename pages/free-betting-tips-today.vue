@@ -54,7 +54,15 @@ onBeforeMount(async () => {
             </h1>
 
             <p class="my-3">
-              some description here
+              Looking for expert football betting tips for today's matches? Our team at iBet365 provides daily free tips, expertly analyzed to help you make the most informed decisions. Whether you're a fan of the Premier League, Champions League, or international fixtures, we’ve got predictions tailored for every bettor.
+            </p>
+
+            <p class="my-3">
+              Our free football tips cover a variety of markets, including match winners, over/under goals, both teams to score (BTTS), and more. Each prediction is backed by in-depth analysis, team statistics, and current form to give you the edge.
+            </p>
+
+            <p class="my-3">
+              <strong>Get ready to place smarter bets with our free football predictions. Start winning today with iBet365!</strong>
             </p>
 
             <div
@@ -149,11 +157,36 @@ onBeforeMount(async () => {
             </h1>
 
             <p class="my-3">
-              Some description here for the challenge bets
+              Take your betting to the next level with our exciting Challenge Bets at iBet365. These carefully structured betting strategies are designed to help you grow a small stake into significant winnings systematically. Whether you’re a beginner or an experienced bettor, our challenge bets offer an engaging and rewarding way to enjoy football betting.
+            </p>
 
-              <br>
+            <h6>Current Challenges:</h6>
 
-              <b>Display only if today a challenge bet</b>
+            <ul class="ib-list pt-5 pb-2">
+              <li>
+                <nuxt-link
+                  class="font-semibold"
+                  to="/challenge-bets/10-to-500-challenge-bet"
+                >
+                  £10 to £500 Challenge
+                </nuxt-link>: Start with just £10 and follow our expert-selected bets to reach the £500 goal.
+              </li>
+              <li>
+                <nuxt-link
+                  class="font-semibold"
+                  to="/challenge-bets/20-to-1000-challenge-bet"
+                >
+                  £20 to £1000 Challenge
+                </nuxt-link>: Start with just £20 and follow our expert-selected bets to reach the £1000 goal.
+              </li>
+            </ul>
+
+            <p class="my-3">
+              Each challenge is backed by expert analysis, with real-time updates and transparent tracking of progress. Follow along, place your bets, and watch your bankroll grow step by step.
+            </p>
+
+            <p class="my-3">
+              Join a Challenge Bet today and turn your passion for football betting into a thrilling experience. Remember to gamble responsibly, and only bet what you can afford to lose.
             </p>
 
             <div
@@ -169,9 +202,107 @@ onBeforeMount(async () => {
 
             <div class="bg-white rounded overflow-hidden shadow-lg mt-12">
               <div class="px-6 py-4">
-                <h6 class="font-bold text-xl mb-2">
-                  Some content should come here
+                <p class="mb-3">
+                  At iBet365, we provide free football betting tips and exciting challenge bets designed to help you grow your bankroll systematically. Whether you're a seasoned bettor or just getting started, this page is your guide to smarter betting decisions and consistent success.
+                </p>
+
+                <hr>
+
+                <h6 class="font-bold text-xl mb-2 mt-3">
+                  Free Betting Tips
                 </h6>
+
+                <p class="my-3">
+                  Our expert team provides daily football betting tips tailored to improve your chances of winning. These tips are thoroughly analyzed, taking into account team performance, player stats, and match conditions. Here’s what you can expect:
+                </p>
+
+                <ul>
+                  <li>Match Predictions: From Premier League to UEFA Champions League, we cover all major leagues and tournaments.</li>
+                  <li>Popular Markets: Match winners, over/under goals, BTTS (Both Teams to Score), and more.</li>
+                  <li>Daily Updates: Tips are updated regularly to ensure you’re always ready to place informed bets.</li>
+                </ul>
+
+                <p class="my-3">
+                  Explore today’s tips and start making winning moves with iBet365!
+                </p>
+
+                <hr>
+
+                <h6 class="font-bold text-xl mb-2 mt-3">
+                  Challenge Bets
+                </h6>
+
+                <p class="my-3">
+                  Take your betting skills to the next level with our structured Challenge Bets! These challenges are designed to transform small stakes into big winnings, following a disciplined approach.
+                </p>
+
+                <div class="m-3">
+                  <p class="font-semibold">
+                    £10 to £500 Challenge
+                  </p>
+
+                  <ul class="list-decimal my-2 mx-5">
+                    <li class="py-1">
+                      Starting Stake: <b>£10</b>
+                    </li>
+                    <li class="py-1">
+                      Target Reward: <b>£500</b>
+                    </li>
+                    <li class="py-1">
+                      Steps Required: <b>15 steps</b> based on bets with <b>1.3</b> odds
+                    </li>
+                  </ul>
+
+                  <p class="my-3">
+                    This challenge is perfect for those who prefer safer bets with smaller odds, ensuring steady progression.
+                  </p>
+                </div>
+
+                <div class="m-3">
+                  <p class="font-semibold">
+                    £20 to £1000 Challenge
+                  </p>
+
+                  <ul class="list-decimal my-2 mx-5">
+                    <li class="py-1">
+                      Starting Stake: <b>£20</b>
+                    </li>
+                    <li class="py-1">
+                      Target Reward: <b>£1000</b>
+                    </li>
+                    <li class="py-1">
+                      Steps Required: <b>10 steps</b> based on bets with <b>1.5</b> odds
+                    </li>
+                  </ul>
+                </div>
+
+                <p class="my-3">
+                  This challenge is ideal for bettors who are comfortable with slightly higher odds and want quicker progression.
+                </p>
+
+                <hr>
+
+                <h6 class="font-bold text-xl mb-2 mt-3">
+                  Why Join Our Challenges?
+                </h6>
+
+                <ul class="list-disc ps-5 mb-3">
+                  <li class="py-1">
+                    Expert Guidance: Each bet is selected by our team based on data analysis and match conditions.
+                  </li>
+                  <li class="py-1">
+                    Step-by-Step Updates: Follow each stage of the challenge with detailed progress tracking.
+                  </li>
+                  <li class="py-1">
+                    Realistic Goals: Both challenges are designed to balance risk and reward effectively.
+                  </li>
+                </ul>
+
+                <hr>
+
+                <p class="my-3">
+                  Join a challenge today and start your journey toward consistent betting success. Always remember to bet responsibly and within your limits.
+                </p>
               </div>
             </div>
           </div>

@@ -1,7 +1,8 @@
 import { type FetchOptions, $fetch } from 'ofetch'
-import { BookiesApi, TrackingApi, ChallengeApi, BetCategoryApi } from '~/services'
+import { FaqsApi, BookiesApi, TrackingApi, ChallengeApi, BetCategoryApi } from '~/services'
 
 interface Api {
+  faqs: FaqsApi
   bookies: BookiesApi
   tracking: TrackingApi
   challenge: ChallengeApi
@@ -22,6 +23,7 @@ export default defineNuxtPlugin(({ $config }) => {
   const apiFetcher = $fetch.create(fetchOptions)
 
   const api: Api = {
+    faqs: new FaqsApi(apiFetcher),
     bookies: new BookiesApi(apiFetcher),
     tracking: new TrackingApi(apiFetcher),
     challenge: new ChallengeApi(apiFetcher),

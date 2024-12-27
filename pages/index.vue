@@ -30,7 +30,7 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
               </h1>
 
               <p class="my-3">
-                Check in for the best free football betting tips for today’s matches. Our football tips are made by industry experts, giving you the inside scoop on all the big matches. Take a look through our selection of tips below, and good luck!
+                Stay ahead with our free football betting tips for today's matches. Our industry experts analyze each game to provide you with the best predictions. Whether you're interested in the Premier League, UEFA Champions League, or international fixtures, we've got you covered. Take a look through our selection of tips below, and good luck!
               </p>
 
               <div class="row">
@@ -52,7 +52,7 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
             </h1>
 
             <p class="my-3">
-              Some description here for the challenge bets
+              Join our exciting challenge bets and turn a small stake into substantial winnings. Our £10 to £500 bet challenge is in progress — follow along and participate to enhance your betting experience.
             </p>
 
             <div
@@ -66,13 +66,13 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
               />
             </div>
 
-            <div class="bg-white rounded overflow-hidden shadow-lg mt-12">
+            <div class="bg-white rounded overflow-hidden shadow-lg mt-12 mb-3">
               <div class="px-6 py-4">
                 <h6 class="font-bold text-xl mb-2">
                   Free Betting Tips Today
                 </h6>
                 <p class="text-gray-700 text-base mb-3">
-                  Welcome to iBet365. Our dedicated and experienced team have analyse today's football matches,
+                  Your Premier Destination for Online Football Betting Tips, Free Bets, and Expert Challenges. Our dedicated and experienced team have analyse today's football matches,
                   and try to give you the best possible predictions for today's available football games. Our mission is
                   to provide you with expertly researched sports betting tips that you can use to consistently win your
                   wagers and build your betting bankroll. We offer you a fantastic range of sports betting tips, great odds and predictions.
@@ -142,6 +142,8 @@ useAsyncData(async () => await offersStore.fetchSportBookies())
                 </p>
               </div>
             </div>
+
+            <ui-ib-faqs />
           </div>
 
           <div class="col-sm-4">

@@ -19,12 +19,7 @@ const betStatusInfo = computed(() => tipResult(props.challenge.challengeStatus))
       {{ challenge.title }}
     </div>
 
-    <div
-      class="text-gray-700 text-base mb-3"
-      v-html="challenge.description"
-    />
-
-    <div class="flex justify-between items-center border-t py-3">
+    <div class="flex justify-between items-center border-t pt-5">
       <div>
         <font-awesome
           size="xl"
@@ -35,7 +30,7 @@ const betStatusInfo = computed(() => tipResult(props.challenge.challengeStatus))
       </div>
 
       <nuxt-link
-        :to="`challenge-bets/${challenge.slug}`"
+        :to="`/challenge-bets/${challenge.slug}`"
         class="font-semibold no-underline"
       >
         Bets: {{ challenge.bets.length + ' / ' + challenge.totalBets }}

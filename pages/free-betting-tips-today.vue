@@ -41,6 +41,14 @@ onBeforeMount(async () => {
     }
   }
 })
+
+useHead({
+  title: 'Free Betting Tips Today - Expert Football Predictions | iBet365',
+  titleTemplate: 'Free Betting Tips Today - Expert Football Predictions | iBet365',
+  meta: [
+    { name: 'description', content: 'Looking for today’s football betting tips? iBet365 offers expert insights and predictions for Premier League, Champions League, and more. Start winning today!' }
+  ]
+})
 </script>
 
 <template>
@@ -100,7 +108,7 @@ onBeforeMount(async () => {
                         >
                       </div>
 
-                      <div class="bet-money-lines-cards">
+                      <div class="max-sm:w-full bet-money-lines-cards">
                         <div class="bg-white flex justify-between mb-3 mw-250">
                           <div class="label">
                             Total odds
@@ -119,7 +127,7 @@ onBeforeMount(async () => {
                         </div>
                       </div>
 
-                      <div class="bet-money-lines-cards">
+                      <div class="max-sm:w-full bet-money-lines-cards">
                         <div class="bg-white mb-3 flex justify-between mw-250">
                           <div class="label">
                             Possible wins

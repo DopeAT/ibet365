@@ -14,6 +14,14 @@ const categories = computed(() => {
 useAsyncData(async () => await challengesStore.fetchChallenges())
 useAsyncData(async () => await betCategoriesStore.fetchBetCategories())
 useAsyncData(async () => await offersStore.fetchSportBookies())
+
+useHead({
+  title: 'iBet365 - Expert Betting Tips & Challenge Bets for Smarter Winnings',
+  titleTemplate: 'iBet365 - Expert Betting Tips & Challenge Bets for Smarter Winnings',
+  meta: [
+    { name: 'description', content: 'Discover free football betting tips, exclusive challenge bets, and expert strategies at iBet365. Start small and win big with our £10 to £500 and £20 to £1000 challenges. Join now!' }
+  ]
+})
 </script>
 
 <template>

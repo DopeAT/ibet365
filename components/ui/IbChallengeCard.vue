@@ -19,8 +19,8 @@ const betStatusInfo = computed(() => tipResult(props.challenge.challengeStatus))
       {{ challenge.title }}
     </div>
 
-    <div class="flex justify-between items-center border-t pt-5">
-      <div>
+    <div class="flex max-sm:flex-col justify-between items-center border-t pt-5">
+      <div class="max-sm:mb-3">
         <font-awesome
           size="xl"
           :icon="betStatusInfo.icon"
@@ -31,11 +31,11 @@ const betStatusInfo = computed(() => tipResult(props.challenge.challengeStatus))
 
       <nuxt-link
         :to="`/challenge-bets/${challenge.slug}`"
-        class="font-semibold no-underline"
+        class="font-semibold no-underline max-sm:mb-1"
       >
         Bets: {{ challenge.bets.length + ' / ' + challenge.totalBets }}
       </nuxt-link>
-      <div>
+      <div class="max-sm:mb-1">
         <span>Current bank: £{{ challenge.bank }}</span>
       </div>
       <nuxt-link

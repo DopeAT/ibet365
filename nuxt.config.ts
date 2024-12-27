@@ -58,7 +58,7 @@ export default defineNuxtConfig({
 
   fontawesome: {
     icons: {
-      solid: ['eye', 'clock', 'times', 'check', 'circle', 'caret-left', 'caret-right', 'chevron-right', 'futbol', 'calendar'],
+      solid: ['eye', 'clock', 'times', 'check', 'circle', 'caret-left', 'caret-right', 'chevron-right', 'futbol', 'calendar', 'envelope'],
       brands: ['facebook', 'instagram', 'threads', 'tiktok', 'square-x-twitter'],
       regular: []
     }

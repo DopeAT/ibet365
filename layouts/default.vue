@@ -21,7 +21,7 @@ useHead({
 </script>
 
 <template>
-  <div :class="{ 'overflow-hidden': !!toggleNav }">
+  <div :class="{ 'overflow-hidden': !!menuNav }">
     <div class="relative">
       <ib-header />
 

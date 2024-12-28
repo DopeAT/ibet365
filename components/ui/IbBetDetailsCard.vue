@@ -47,8 +47,8 @@ defineProps({
         {{ bet.tip.awayTeam.name }}
       </div>
     </div>
-    <div class="bet-info">
-      <div class="text-center bet-tip">
+    <div class="bet-info max-sm:flex-col">
+      <div class="max-sm:text-center bet-tip">
         <h5 class="font-semibold">
           Tip
         </h5>

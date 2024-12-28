@@ -81,10 +81,14 @@ body {
 // Layout
 .container-sm {
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+
+  @media (min-width: $screen-sm) {
+    padding-right: 15px;
+    padding-left: 15px;
+
+  }
 }
 
 .row {
@@ -184,7 +188,7 @@ ul.ib-list {
   display: flex;
   height: 50vh;
   width: 100%;
-  z-index: 2;
+  z-index: 15;
 
   @media (max-width: $screen-sm) {
     height: 100vh;
@@ -526,7 +530,7 @@ ul.ib-list {
       padding: 15px 0;
 
       div:first-child {
-        margin-right: 25px;
+        margin-bottom: 15px;
 
         &.mr-0 {
           margin-right: 0;

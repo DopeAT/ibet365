@@ -33,8 +33,8 @@ useHead({
 
     <hr class="mb-5">
 
-    <div class="flex items-baseline justify-between">
-      <div>
+    <div class="flex items-baseline justify-between max-sm:flex-col">
+      <div class="max-sm:mb-8">
         <h3 class="mb-3">
           Join our community
         </h3>
@@ -60,7 +60,7 @@ useHead({
         </div>
       </div>
 
-      <div>
+      <div class="max-sm:mb-8">
         <h3>Contact Us</h3>
         <p>If you have any questions, feel free to reach out to our customer support team. We're always here to assist you!</p>
         <a

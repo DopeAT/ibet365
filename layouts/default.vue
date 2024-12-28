@@ -27,7 +27,7 @@ useHead({
 
       <div
         id="app-container"
-        class="container mx-auto pt-28 px-3 max-w-screen-xl"
+        class="container mx-auto pt-28 sm:px-3 px-1 max-w-screen-xl"
       >
         <slot />
       </div>

@@ -43,7 +43,7 @@ useAsyncData(async () => await betCategoriesStore.fetchBetCategories())
         </div>
 
         <div class="col-sm-4">
-          <h2 class="font-semibold text-xl border-green border-b">
+          <h2 class="font-semibold text-xl border-green border-b max-sm:mt-5">
             Free bets
           </h2>
           <div class="bg-white shadow-2xl">

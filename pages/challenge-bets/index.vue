@@ -189,8 +189,8 @@ useAsyncData(async () => await challengesStore.fetchChallenges())
           </div>
         </div>
 
-        <div class="col-sm-4">
-          <h2 class="font-semibold text-xl border-green border-b">
+        <div class="col-sm-4 max-sm:mt-3">
+          <h2 class="font-semibold text-xl border-green border-b max-sm:mt-5">
             Free bets
           </h2>
           <div class="bg-white shadow-2xl">

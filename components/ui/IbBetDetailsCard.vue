@@ -21,12 +21,11 @@ defineProps({
         :alt="bet.tip.league.title + ' logo'"
         class="img-fluid mb-3 league-logo"
       >
-
       <div class="font-semibold bet-date-time">
-        {{ formatDate(bet.tip.starts, EDateFormats.DAY_MONTH) }}
+        {{ formatDate(bet.date, EDateFormats.DAY_MONTH) }}
       </div>
       <div class="font-semibold bet-date-time">
-        {{ formatDate(bet.tip.starts, EDateFormats.TIME) }}
+        {{ formatDate(bet.date, EDateFormats.TIME) }}
       </div>
     </div>
     <div class="bet-teams">

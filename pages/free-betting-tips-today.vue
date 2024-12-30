@@ -11,7 +11,7 @@ const betCategoriesStore = useBetCategoriesStore()
 
 const challenges = computed(() => challengesStore.getChallenges)
 const sportsOffers = computed(() => offersStore.getSportOffers)
-const todayBets = computed(() => betCategoriesStore.getTodayBets)
+const todayBets = computed(() => betCategoriesStore.getTodayBets.filter(category => category.bets.length > 0))
 
 useAsyncData(async () => await offersStore.fetchSportBookies())
 useAsyncData(async () => await challengesStore.fetchChallenges())
@@ -73,10 +73,7 @@ useHead({
               <strong>Get ready to place smarter bets with our free football predictions. Start winning today with iBet365!</strong>
             </p>
 
-            <div
-              v-if="todayBets.filter(b => b.bets.length).length"
-              class="row"
-            >
+            <div class="row">
               <div
                 v-for="(category, index) in todayBets"
                 :key="`category-col-${index}`"

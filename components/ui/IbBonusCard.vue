@@ -22,7 +22,7 @@ const { bookieImg } = useBookie()
       <nuxt-img
         format="webp"
         :src="bookieImg(bookie)"
-        :alt="`${bookie.name} logo image`"
+        :alt="`${bookie.name} - ${bookie.bonuses[0].title}`"
         class="cursor-pointer mx-auto mb-3"
       />
     </div>

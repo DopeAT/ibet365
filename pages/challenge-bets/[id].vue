@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { seo } from '~/constants'
+
 const route = useRoute()
 
 const offersStore = useOffersStore()
@@ -11,6 +13,14 @@ const challengeBookie = computed(() => sportsOffers.value.find(offer => offer.sl
 
 useAsyncData(async () => await challengesStore.fetchChallenge(route.params.id as string))
 useAsyncData(async () => await offersStore.fetchSportBookies())
+
+useHead({
+  title: seo.challenge[route.params.id as string]?.title ?? '',
+  titleTemplate: seo.challenge[route.params.id as string]?.title ?? '',
+  meta: [
+    { name: 'description', content: seo.challenge[route.params.id as string]?.desc ?? '' }
+  ]
+})
 </script>
 
 <template>

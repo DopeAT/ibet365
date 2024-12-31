@@ -15,9 +15,9 @@ const betStatusInfo = computed(() => tipResult(props.challenge.challengeStatus))
 
 <template>
   <div class="bg-white rounded overflow-hidden shadow-lg p-5">
-    <div class="text-gray-900 font-bold text-xl mb-2">
+    <h2 class="text-gray-900 font-bold text-xl mb-2">
       {{ challenge.title }}
-    </div>
+    </h2>
 
     <div class="flex max-sm:flex-col justify-between items-center border-t pt-5">
       <div class="max-sm:mb-3">

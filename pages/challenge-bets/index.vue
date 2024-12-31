@@ -7,6 +7,14 @@ const challenges = computed(() => challengesStore.getChallenges)
 
 useAsyncData(async () => await offersStore.fetchSportBookies())
 useAsyncData(async () => await challengesStore.fetchChallenges())
+
+useHead({
+  title: 'Challenge Bets | Transform Small Stakes into Big Wins at iBet365',
+  titleTemplate: 'Challenge Bets | Transform Small Stakes into Big Wins at iBet365',
+  meta: [
+    { name: 'description', content: 'Join iBet365\'s Challenge Bets to systematically grow your betting bankroll. Start with as little as £10 and aim for targets up to £1,000 through expert-guided steps.' }
+  ]
+})
 </script>
 
 <template>
@@ -91,9 +99,9 @@ useAsyncData(async () => await challengesStore.fetchChallenges())
 
               <hr>
 
-              <h6 class="font-bold text-xl mb-2 mt-3">
+              <h2 class="font-bold text-xl mb-2 mt-3">
                 What Are Challenge Bets?
-              </h6>
+              </h2>
               <p class="my-3">
                 Challenge bets are a unique and exciting way to grow your betting bankroll systematically. They involve starting with a small initial stake and following a carefully planned series of bets to achieve a significant target amount. Each bet in the challenge builds on the previous winnings, creating a structured path to reach your goal.
               </p>
@@ -110,9 +118,9 @@ useAsyncData(async () => await challengesStore.fetchChallenges())
 
               <hr>
 
-              <h6 class="font-bold text-xl mb-2 mt-3">
+              <h2 class="font-bold text-xl mb-2 mt-3">
                 Why Are Challenge Bets Good?
-              </h6>
+              </h2>
 
               <p class="my-3">
                 Challenge bets offer several advantages that make them an excellent choice for bettors:
@@ -164,9 +172,9 @@ useAsyncData(async () => await challengesStore.fetchChallenges())
 
               <hr>
 
-              <h6 class="font-bold text-xl mb-2 mt-3">
+              <h2 class="font-bold text-xl mb-2 mt-3">
                 Why Join Our Bet Challenges?
-              </h6>
+              </h2>
 
               <ul class="list-disc ps-5 mb-3">
                 <li class="py-1">

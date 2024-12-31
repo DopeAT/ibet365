@@ -1,3 +1,4 @@
+export * from './seo'
 export * from './menu'
 
 export const socials = {
